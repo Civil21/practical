@@ -4,11 +4,17 @@ class RequestsController < ApplicationController
   end
 
   def find
-    @request = Request.find_by_id(params[:id])
+    @request = Request.find_by(id: params[:id])
+    pp Request.all
+    pp @request
     if @request && @request.token == params[:token]
-      redirect_to request_path(@request.id)
+      redirect_to request_path(@request.id, token: params[:token])
     else
-      @massage = 'Ви не ввели жоного значення' if params[:id] == '' || params[:id].nil?
+      @massage = ''
+      @massage += 'Ви не ввели жодного значення ' if params[:id] == '' || params[:id].nil?
+      @massage += 'Ви не ввели ключ ' if params[:token] == '' || params[:token].nil?
+      @massage += 'НЕ ЗНАЙДЕНО ЗАЯВКИ З ТАКИМ НОМЕРОМ ' unless @request && params[:id] != ''
+      @massage += 'Ключ не співпадає ' if @request && @request.token != params[:token] && params[:token] != ''
       render 'index'
     end
   end
@@ -27,7 +33,9 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = Request.create(params.require(:request).permit(:name, :text))
+    params[:request][:stat] = 'wait'
+    params[:request][:token] = 'token'
+    @request = Request.create(params.require(:request).permit(:name, :phone, :subject, :token, :text, :stat))
     if @request.save
       redirect_to request_path(@request.id)
     else
