@@ -6,7 +6,7 @@ class RequestsController < ApplicationController
       redirect_to admin_path
 
     else
-      @massage = 'Ведіть ід та ключ'
+      @message = 'Ведіть ід та ключ'
     end
   end
 
@@ -17,11 +17,11 @@ class RequestsController < ApplicationController
       session[:token] = @token
       redirect_to request_path(@request.id)
     else
-      @massage = ''
-      @massage += 'Ви не ввели жодного значення ' if params[:id] == '' || params[:id].nil?
-      @massage += 'Ви не ввели ключ ' if @token == '' || @token.nil?
-      @massage += 'НЕ ЗНАЙДЕНО ЗАЯВКИ З ТАКИМ НОМЕРОМ ' unless @request && params[:id] != ''
-      @massage += 'Ключ не співпадає ' if @request && @request.token != @token && @token != ''
+      @message = ''
+      @message += 'Ви не ввели жодного значення ' if params[:id] == '' || params[:id].nil?
+      @message += 'Ви не ввели ключ ' if @token == '' || @token.nil?
+      @message += 'НЕ ЗНАЙДЕНО ЗАЯВКИ З ТАКИМ НОМЕРОМ ' unless @request && params[:id] != ''
+      @message += 'Ключ не співпадає ' if @request && @request.token != @token && @token != ''
       render 'index'
     end
   end
@@ -66,7 +66,7 @@ class RequestsController < ApplicationController
     if session[:admin] == true
       @requests = Request.all.order(created_at: :desc)
     else
-      redirect_to root_path # flash
+      redirect_to admin_signin_path
     end
   end
 
