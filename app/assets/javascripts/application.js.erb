@@ -17,3 +17,8 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+<% if @afterCreate %>
+$(document).ready(function(){
+    $("#afterCreate").modal();
+});
+<%end%>

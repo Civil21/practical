@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2019_06_25_102407) do
     t.string "client_id"
     t.string "text"
     t.string "phone"
+    t.string "email"
     t.string "stat"
     t.string "token"
     t.datetime "created_at", null: false

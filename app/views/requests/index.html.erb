@@ -1,9 +1,20 @@
-<div >
-  <%= @massage%>
-</div>
+
+<div class="central">
+  <div class="message">
+    <%= @massage%>
+  </div>
 <%= form_tag find_request_path, method: :get do %>
-  <%= text_field_tag :id %>
-  <%= text_field_tag :token %>
-  <%= submit_tag 'Переглянути' %>
+  <div class="form-row">
+    <div class="col">
+      <%= text_field_tag :id , "" ,class:"form-control", placeholder:"ID"%>
+    </div>
+    <div class="col">
+      <%= text_field_tag :token, "" ,class:"form-control", placeholder:"token" %>
+    </div>
+    <div class="col">
+      <%= submit_tag 'Переглянути' ,class:"btn btn-success" %>
+    </div>
+  </div>
+
 <% end %>
-<%= link_to "Створити заявку", new_request_path%>
+</div>

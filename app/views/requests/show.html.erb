@@ -1,4 +1,27 @@
-Заява №<%= @request.id %> <%= @request.subject %> <%= @request.stat %>
-Текст:  <%= @request.text%>
+<div class="central">
 
+  <div class="modal fade" id="afterCreate" tabindex="-1" role="dialog" aria-labelledby="afterCreateCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="afterCreateCenterTitle">Данні доступу </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Індифікатор (ID): <%= @request.id %></br>
+          Ключ(Token): <%= @request.token %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<h3>Заява №<%= @request.id %> <%= @request.subject %> <%= @request.stat %></h3>
+<%= @request.text%>
+<hr>
 Коментарі:
+</div>

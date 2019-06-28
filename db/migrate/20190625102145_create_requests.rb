@@ -6,6 +6,7 @@ class CreateRequests < ActiveRecord::Migration[5.2]
       t.string :client_id
       t.string :text
       t.string :phone
+      t.string :email
       t.string :stat
       t.string :token
 
