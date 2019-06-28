@@ -1,0 +1,29 @@
+<table class=" table table-striped" data-sort-name="name" data-sort-order="desc">
+  <thead>
+    <tr>
+      <th data-field="Name" data-sortable="true">Name</th>
+      <th data-field="Subject" data-sortable="true">Subject</th>
+      <th data-field="Client_id" data-sortable="true">Client_id</th>
+      <th data-field="Phone" data-sortable="true">Phone</th>
+      <th data-field="Email" data-sortable="true">Email</th>
+      <th data-field="Stat" data-sortable="true">Stat</th>
+      <th data-field="Stat" data-sortable="true">Created</th>
+      <th data-field="Stat" data-sortable="true">Last Comment</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @requests.each do |x| %>
+      <tr>
+        <td><%= x.name %></td>
+        <td><%= x.subject %></td>
+        <td><%= x.client_id %></td>
+        <td><%= x.phone %></td>
+        <td><%= x.email %></td>
+        <td><%= x.stat %></td>
+        <td><%= x.created_at %></td>
+        <td><%# x.last_comment %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -52,7 +52,13 @@ class RequestsController < ApplicationController
     end
   end
 
-  def admin; end
+  def admin
+    if session[:admin] == true
+      @requests = Request.all.order(created_at: :desc)
+    else
+      redirect_to root_path # flash
+    end
+  end
 
   def signin; end
 
