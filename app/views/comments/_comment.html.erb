@@ -1,6 +1,33 @@
-<div class="comment">
+<% if comment.author == 'admin' %>
+<div class="card text-white bg-primary">
+  <div class="card-header"><strong><%=comment.author%></strong></div>
+  <div class="card-body">
+    <p class="card-text"><%= comment.text %></p>
 
+  </div>
+  <div class="card-footer bg-transparent">
+    <p class="text-white">Created at <%= comment.created_at %>
+  <% if session[:admin] %>
 
-<%= comment.text %>
-<%=link_to request_comment_path(@request.id,comment.id),data: {confirm: "Видалити?"}, method: :delete do%><i class="fa fa-trash" style="color: red"></i><%end%>
+    <%=link_to request_comment_path(@request.id,comment.id),data: {confirm: "Видалити?"}, method: :delete, class:"float-right btn text-white btn-danger" do%><i class="fa fa-trash"></i><%end%>
+  <%end%>
+  </p>
+  </div>
 </div>
+<%else%>
+<div class="card bg-light">
+  <div class="card-header"><strong><%=comment.author%></strong></div>
+  <div class="card-body">
+    <p class="card-text"><%= comment.text %></p>
+  </div>
+  <div class="card-footer bg-transparent">
+    <p class="text-secondary">Created at <%= comment.created_at %>
+  <% if !session[:admin] %>
+
+    <%=link_to request_comment_path(@request.id,comment.id),data: {confirm: "Видалити?"}, method: :delete, class:"float-right btn text-white btn-danger" do%><i class="fa fa-trash"></i><%end%>
+  <%end%>
+  </p>
+  </div>
+</div>
+<%end%>
+<br/>
