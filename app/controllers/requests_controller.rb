@@ -2,7 +2,12 @@ class RequestsController < ApplicationController
   after_action :read, only: :show
   def index
     session[:token] = nil
-    @massage = 'Ведіть ід та ключ'
+    if session[:admin]
+      redirect_to admin_path
+
+    else
+      @massage = 'Ведіть ід та ключ'
+    end
   end
 
   def find
@@ -24,7 +29,7 @@ class RequestsController < ApplicationController
   def show
     @token = session[:token]
     @request = Request.find(params[:id])
-    if @request.token == @token
+    if @request.token == @token || session[:admin]
     else
       redirect_to root_path
     end
@@ -35,14 +40,19 @@ class RequestsController < ApplicationController
   end
 
   def new
-    session[:token] = nil
-    @request = Request.new
+    if session[:admin]
+      redirect_to admin_path
+    else
+      session[:token] = nil
+      @request = Request.new
+    end
   end
 
   def create
     session[:token] = nil
     params[:request][:stat] = 'wait'
-    params[:request][:token] = 'token'
+    params[:request][:token] = (0...6).map { ('a'..'z').to_a[rand(26)] }.join
+    params[:request][:author] = params[:request][:author].downcase
     @request = Request.create(params.require(:request).permit(:name, :phone, :subject, :token, :text, :stat))
     if @request.save
       session[:token] = @request.token
