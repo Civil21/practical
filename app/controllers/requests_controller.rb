@@ -54,11 +54,17 @@ class RequestsController < ApplicationController
 
   def admin; end
 
+  def signin; end
+
   def login
-    session[:admin] = true if params[:name] == 'admin' && params[:password] == 'guest'
+    if params[:name] == 'admin' && params[:password] == 'guest'
+      session[:admin] = true
+      redirect_to admin_path
+    end
   end
 
   def logout
     session[:admin] = false
+    redirect_back(fallback_location: root_path)
   end
 end

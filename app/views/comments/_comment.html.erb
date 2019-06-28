@@ -1,2 +1,6 @@
+<div class="comment">
+
+
 <%= comment.text %>
 <%=link_to request_comment_path(@request.id,comment.id),data: {confirm: "Видалити?"}, method: :delete do%><i class="fa fa-trash" style="color: red"></i><%end%>
+</div>

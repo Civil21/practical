@@ -1,0 +1,16 @@
+<div class="central">
+<%= form_tag admin_login_path, method: :post do %>
+  <div class="form-row">
+    <div class="col">
+      <%= text_field_tag :name , "" ,class:"form-control", placeholder:"name"%>
+    </div>
+    <div class="col">
+      <%= text_field_tag :password, "" ,class:"form-control", placeholder:"password" %>
+    </div>
+    <div class="col">
+      <%= submit_tag 'Війти' ,class:"btn btn-primary" %>
+    </div>
+  </div>
+
+<% end %>
+</div>

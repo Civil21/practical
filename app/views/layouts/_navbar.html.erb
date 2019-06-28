@@ -2,5 +2,9 @@
   <%= link_to root_path, class:'navbar-brand' do %>
     Bootstrap
   <%end%>
+  <% if   session[:admin] %>
+  <%= link_to "Вийти", admin_logout_path,method: :post, class:"btn btn-danger"%>
+  <%else%>
   <%= link_to "Створити заявку", new_request_path, class:"btn btn-warning"%>
+  <%end%>
 </nav>
