@@ -1,9 +1,0 @@
-<div >
-  <%= pp @message%>
-</div>
-<%= form_tag find_request_path, method: :get do %>
-  <%= text_field_tag :id %>
-  <%= text_field_tag :token %>
-  <%= submit_tag 'Переглянути' %>
-<% end %>
-<%= link_to "Створити заявку", root_path%>

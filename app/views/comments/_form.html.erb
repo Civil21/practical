@@ -1,0 +1,4 @@
+<%= form_for :comment, url:request_comments_path(@request.id) do |f| %>
+<%= f.text_area :text, class: "form-control", :rows => 8 %>
+        <%= f.submit "Прокоментувати", class:"btn btn-sm btn-primary"%>
+<%end%>

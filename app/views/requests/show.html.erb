@@ -20,8 +20,12 @@
     </div>
   </div>
 
-<h3>Заява №<%= @request.id %> <%= @request.subject %> <%= @request.stat %></h3>
+<h3>Заява №<%= @request.id %> <%= @request.subject %>   <%= color_stat(@request.stat) %></h3>
 <%= @request.text%>
 <hr>
 Коментарі:
+
+<%= render @request.comments %>
+
+<%= render 'comments/form' %>
 </div>

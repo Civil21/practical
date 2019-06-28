@@ -1,5 +1,6 @@
 class RequestsController < ApplicationController
   def index
+    session[:token] = nil
     @massage = 'Ведіть ід та ключ'
   end
 
@@ -21,7 +22,6 @@ class RequestsController < ApplicationController
 
   def show
     @token = session[:token]
-    session[:token] = nil
     @request = Request.find(params[:id])
     if @request.token == @token
     else
@@ -30,10 +30,12 @@ class RequestsController < ApplicationController
   end
 
   def new
+    session[:token] = nil
     @request = Request.new
   end
 
   def create
+    session[:token] = nil
     @afterCreate = true
     params[:request][:stat] = 'wait'
     params[:request][:token] = 'token'
@@ -44,5 +46,15 @@ class RequestsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def admin; end
+
+  def login
+    session[:admin] = true if params[:name] == 'admin' && params[:password] == 'guest'
+  end
+
+  def logout
+    session[:admin] = false
   end
 end
