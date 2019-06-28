@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2019_06_25_102407) do
     t.string "email"
     t.string "stat"
     t.string "token"
+    t.boolean "read", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

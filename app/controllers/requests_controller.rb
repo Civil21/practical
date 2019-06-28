@@ -1,4 +1,5 @@
 class RequestsController < ApplicationController
+  after_action :read, only: :show
   def index
     session[:token] = nil
     @massage = 'Ведіть ід та ключ'
@@ -29,6 +30,10 @@ class RequestsController < ApplicationController
     end
   end
 
+  def read
+    @request.update(read: true) if @request && !@request.read
+  end
+
   def new
     session[:token] = nil
     @request = Request.new
@@ -36,7 +41,6 @@ class RequestsController < ApplicationController
 
   def create
     session[:token] = nil
-    @afterCreate = true
     params[:request][:stat] = 'wait'
     params[:request][:token] = 'token'
     @request = Request.create(params.require(:request).permit(:name, :phone, :subject, :token, :text, :stat))
