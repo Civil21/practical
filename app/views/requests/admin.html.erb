@@ -1,15 +1,13 @@
 <table class=" table table-striped" data-sort-name="name" data-sort-order="desc">
   <thead>
     <tr>
-      <th data-field="ID" data-sortable="true">Name</th>
-      <th data-field="Name" data-sortable="true">Name</th>
-      <th data-field="Subject" data-sortable="true">Subject</th>
+      <th data-field="ID" data-sortable="true"><%=link_to order_path("id"), method: :put do %>ID <%if session[:order_name]=="id"%><i class="<%if session[:order_type]=="DESC"%>fa fa-angle-up<%else%>fa fa-angle-down <%end%>"></i><%end%> <%end%></th>
+      <th data-field="Name" data-sortable="true"><%=link_to order_path("name"), method: :put do %>Name <%if session[:order_name]=="name"%><i class="<%if session[:order_type]=="DESC"%>fa fa-angle-up<%else%>fa fa-angle-down <%end%>"></i><%end%> <%end%></th>
+      <th data-field="Subject" data-sortable="true"><%=link_to order_path("subject"), method: :put do %>Subject <%if session[:order_name]=="subject"%><i class="<%if session[:order_type]=="DESC"%>fa fa-angle-up<%else%>fa fa-angle-down <%end%>"></i><%end%> <%end%></th>
       <th data-field="Client_id" data-sortable="true">Client_id</th>
-      <th data-field="Phone" data-sortable="true">Phone</th>
-      <th data-field="Email" data-sortable="true">Email</th>
       <th data-field="Stat" data-sortable="true">Stat</th>
-      <th data-field="Stat" data-sortable="true">Created</th>
-      <th data-field="Stat" data-sortable="true">Last Comment</th>
+      <th data-field="Created" data-sortable="true">Created</th>
+      <th data-field="Last Active" data-sortable="true">Last Active</th>
     </tr>
   </thead>
 

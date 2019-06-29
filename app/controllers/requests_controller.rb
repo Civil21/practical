@@ -52,7 +52,7 @@ class RequestsController < ApplicationController
     session[:token] = nil
     params[:request][:stat] = 'wait'
     params[:request][:token] = (0...6).map { ('a'..'z').to_a[rand(26)] }.join
-    params[:request][:author] = params[:request][:author].downcase
+    params[:request][:name] = params[:request][:name].downcase
     @request = Request.create(params.require(:request).permit(:name, :phone, :subject, :token, :text, :stat))
     if @request.save
       session[:token] = @request.token
@@ -64,7 +64,8 @@ class RequestsController < ApplicationController
 
   def admin
     if session[:admin] == true
-      @requests = Request.all.order(created_at: :desc)
+      @requests = Request.all
+      @requests = @requests.order("#{session['order_name']} #{session['order_type']} ") unless session['order_name'].nil?
     else
       redirect_to admin_signin_path
     end
@@ -81,6 +82,19 @@ class RequestsController < ApplicationController
 
   def logout
     session[:admin] = false
+    redirect_back(fallback_location: root_path)
+  end
+
+  def order
+    if session['order_name'] == params[:name]
+      session['order_type'] = if session['order_type'] != 'ASC'
+                                'ASC'
+                              else
+                                'DESC'
+                              end
+    else
+      session['order_name'] = params[:name]
+    end
     redirect_back(fallback_location: root_path)
   end
 end

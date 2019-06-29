@@ -10,4 +10,9 @@ module RequestsHelper
   def admin?
     session[:admin]
   end
+
+  def subject(name)
+    return 'Підключення до інтернету' if name == 'new_client'
+    return 'Проблема з інтернетом' if name == 'old_client'
+  end
 end

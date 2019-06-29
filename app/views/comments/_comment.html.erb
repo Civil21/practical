@@ -7,7 +7,7 @@
   </div>
   <div class="card-footer bg-transparent">
     <p class="text-white">Created at <%= comment.created_at %>
-  <% if session[:admin] %>
+  <% if admin? %>
 
     <%=link_to request_comment_path(@request.id,comment.id),data: {confirm: "Видалити?"}, method: :delete, class:"float-right btn text-white btn-danger" do%><i class="fa fa-trash"></i><%end%>
   <%end%>
@@ -22,7 +22,7 @@
   </div>
   <div class="card-footer bg-transparent">
     <p class="text-secondary">Created at <%= comment.created_at %>
-  <% if !session[:admin] %>
+  <% unless admin? %>
 
     <%=link_to request_comment_path(@request.id,comment.id),data: {confirm: "Видалити?"}, method: :delete, class:"float-right btn text-white btn-danger" do%><i class="fa fa-trash"></i><%end%>
   <%end%>
