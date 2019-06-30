@@ -29,6 +29,8 @@
 <h3>Заява №<%= @request.id %> <%= @request.subject %>   <%= color_stat(@request.stat) %></h3>
 <p style="text-align:left; padding: 20px"><%= @request.text%></p>
 <p class="text-secondary">Від <%=@request.created_at%></p>
+<% if  @request.phone%><p><b>Телефон:</b><%= @request.phone%></p><%end%>
+<% if  @request.email%><p><b>Email:</b><%= @request.email%></p><%end%>
 <hr>
 Коментарі:
 

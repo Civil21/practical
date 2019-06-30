@@ -1,36 +1,36 @@
 
 <div class="central-form">
-<%= form_for @request, validate: true do |f| %>
-<div class="form-group">
-<%= f.label :subject%>
-<%= f.select :subject , options_for_select([[subject('new_client'),'new_client'],[subject('old_client'),'old_client']]),{},class:"form-control"%>
-</div>
-<div class="form-row">
-<div class="form-group col">
-<%= f.label :client_id%>
-<%= f.text_field :client_id,class:"form-control" %>
-</div>
-<div class="form-group col">
-<%= f.label :name%>
-<%= f.text_field :name,class:"form-control" %>
-</div>
-</div>
-<div class="form-row">
-<div class="form-group col">
-<%= f.label :phone%>
-<%= f.text_field :phone ,class:"form-control" %>
-</div>
-<div class="form-group col">
-<%= f.label :email%>
-<%= f.text_field :email ,class:"form-control"%>
-</div>
-</div>
-<div class="form-group">
-  <%= f.label :text%>
-  <%= f.text_area :text ,class:"form-control" %>
-</div>
-<div class="form-group">
-  <%= f.submit "Створити" , class:"btn btn-success" %>
-</div>
-<% end %>
+  <%= form_for @request, validate: true do |f| %>
+    <div class="form-group">
+      <%= f.label :subject%>
+      <%= f.select :subject , options_for_select([[subject('new_client'),'new_client'],[subject('old_client'),'old_client']]),{},class:"form-control"%>
+    </div>
+  <div class="form-row">
+    <div class="form-group col">
+      <%= f.label :client_id%>
+      <%= f.text_field :client_id,class:"form-control" %>
+    </div>
+    <div class="form-group col">
+      <%= f.label :name%>
+      <%= f.text_field :name,class:"form-control" %>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col">
+      <%= f.label :phone%>
+      <%= f.text_field :phone ,class:"form-control" %>
+    </div>
+    <div class="form-group col">
+      <%= f.label :email%>
+      <%= f.text_field :email ,class:"form-control"%>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :text%>
+    <%= f.text_area :text ,class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Створити" , class:"btn btn-success" %>
+  </div>
+  <% end %>
 </div>

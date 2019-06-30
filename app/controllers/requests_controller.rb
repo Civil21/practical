@@ -6,7 +6,11 @@ class RequestsController < ApplicationController
       redirect_to admin_path
 
     else
-      @message = 'Ведіть ід та ключ'
+      if session[:message] != ''
+        @message = session[:message]
+        session[:message] = nil
+      end
+      @message ||= 'Ведіть ід та ключ'
     end
   end
 
@@ -17,7 +21,9 @@ class RequestsController < ApplicationController
       session[:token] = @token
       redirect_to request_path(@request.id)
     else
+
       @message = ''
+
       @message += 'Ви не ввели жодного значення ' if params[:id] == '' || params[:id].nil?
       @message += 'Ви не ввели ключ ' if @token == '' || @token.nil?
       @message += 'НЕ ЗНАЙДЕНО ЗАЯВКИ З ТАКИМ НОМЕРОМ ' unless @request && params[:id] != ''
@@ -104,5 +110,14 @@ class RequestsController < ApplicationController
       @request.update(stat: params[:name])
       redirect_back(fallback_location: root_path)
     end
+  end
+
+  def help; end
+
+  def feed
+    @requests ||= Request.where(phone: params[:phone]) if params[:phone] != ''
+    @requests ||= Request.where(email: params[:email]) if params[:email] != ''
+    session[:message] = @requests.map { |r| r.id.to_s + ' ' + r.token + ' ' }.join(';')
+    redirect_to root_path
   end
 end

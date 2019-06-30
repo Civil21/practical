@@ -5,14 +5,17 @@
   </div>
 <%= form_tag find_request_path, method: :get do %>
   <div class="form-row">
-    <div class="col">
+    <div class="col-sm-4">
       <%= text_field_tag :id , "" ,class:"form-control", placeholder:"ID"%>
     </div>
-    <div class="col">
+    <div class="col-sm-4">
       <%= text_field_tag :token, "" ,class:"form-control", placeholder:"token" %>
     </div>
-    <div class="col">
+    <div class="col-sm-2">
       <%= submit_tag 'Переглянути' ,class:"btn btn-success" %>
+    </div>
+    <div class="col-sm-8" >
+      <p><%= link_to 'Забули ключ чи ід?', help_path %></p>
     </div>
   </div>
 
