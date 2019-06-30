@@ -3,10 +3,7 @@
   <td><%= link_to request.id, request_path(request.id)%></td>
   <td><%= request.name %></td>
   <td><%= subject(request.subject) %></td>
-  <td><%= request.client_id %></td>
   <td>
-
-    <!-- Default dropright button -->
     <div class="btn-group dropright">
       <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= color_stat(request.stat) %>

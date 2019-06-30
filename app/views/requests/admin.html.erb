@@ -1,16 +1,12 @@
 <table class="table">
   <thead>
     <tr>
-      <th><%=link_to order_path("id"), method: :put do %>ID <%if session[:order_name]=="id"%><i class="<%if session[:order_type]=="DESC"%>fa fa-angle-up<%else%>fa fa-angle-down <%end%>"></i><%end%> <%end%></th>
-      <th><%=link_to order_path("name"), method: :put do %>Name <%if session[:order_name]=="name"%><i class="<%if session[:order_type]=="DESC"%>fa fa-angle-up<%else%>fa fa-angle-down <%end%>"></i><%end%> <%end%></th>
-      <th><%=link_to order_path("subject"), method: :put do %>Subject <%if session[:order_name]=="subject"%><i class="<%if session[:order_type]=="DESC"%>fa fa-angle-up<%else%>fa fa-angle-down <%end%>"></i><%end%> <%end%></th>
-      <th>Client_id</th>
-      <th><%=link_to order_path("stat"), method: :put do %>Stat <%if session[:order_name]=="stat"%><i class="<%if session[:order_type]=="DESC"%>fa fa-angle-up<%else%>fa fa-angle-down <%end%>"></i><%end%> <%end%></th>
-      <th><%=link_to order_path("created_at"), method: :put do %>Created <%if session[:order_name]=="created_at"%><i class="<%if session[:order_type]=="DESC"%>fa fa-angle-up<%else%>fa fa-angle-down <%end%>"></i><%end%> <%end%></th>
+      <%['id','name','subject','stat','created_at'].each do |name|%>
+      <th><%=link_to order_path(name), method: :put do %><%=name.upcase%> <%if session[:order_name]==name%><i class="<%if session[:order_type]=="DESC"%>fa fa-angle-up<%else%>fa fa-angle-down <%end%>"></i><%end%> <%end%></th>
+      <%end%>
       <th>Last active</th>
     </tr>
   </thead>
-
   <tbody>
     <%=render @requests%>
   </tbody>
