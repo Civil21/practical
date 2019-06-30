@@ -97,4 +97,12 @@ class RequestsController < ApplicationController
     end
     redirect_back(fallback_location: root_path)
   end
+
+  def stat
+    if %w[wait success close].include?(params[:name])
+      @request = Request.find(params[:id])
+      @request.update(stat: params[:name])
+      redirect_back(fallback_location: root_path)
+    end
+  end
 end

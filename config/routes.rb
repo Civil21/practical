@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   post 'admin/login', to: 'requests#login'
   post 'admin/logout', to: 'requests#logout'
   put '/order/:name', to: 'requests#order', as: 'order'
+
   resources :requests, except: %i[edit destroy update] do
+    member do
+      post '/stat/:name', to: 'requests#stat', as: 'stat'
+    end
     resources :comments, except: %i[new show edit index]
   end
 end

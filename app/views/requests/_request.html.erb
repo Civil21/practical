@@ -4,7 +4,20 @@
   <td><%= request.name %></td>
   <td><%= subject(request.subject) %></td>
   <td><%= request.client_id %></td>
-  <td><%= color_stat(request.stat) %></td>
+  <td>
+
+    <!-- Default dropright button -->
+    <div class="btn-group dropright">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= color_stat(request.stat) %>
+      </button>
+      <div class="dropdown-menu">
+        <% ['wait', 'success','close'].each do |stat| %>
+          <%if request.stat !=stat %><%= link_to stat , stat_request_path(request.id,stat), method: :post , class:"dropdown-item"%><%end%>
+        <%end%>
+      </div>
+    </div>
+  </td>
   <td><%= request.created_at %></td>
   <td><%= request.last_active %></td>
   </tr>
