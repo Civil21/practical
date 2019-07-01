@@ -29,13 +29,13 @@
 <h3>Заява №<%= @request.id %> <%= subject(@request.subject) %>   <%= color_stat(@request.stat) %></h3>
 <p style="text-align:left; padding: 20px"><%= @request.text%></p>
 <p class="text-secondary">Від <%=@request.created_at%></p>
-<% if  @request.client_id%><p><b>Код клієнта: </b><%= @request.client_id%></p><%end%>
-<% if  @request.phone%><p><b>Телефон: </b><%= @request.phone%></p><%end%>
-<% if  @request.email%><p><b>Email: </b><%= @request.email%></p><%end%>
+<% if @request.client_id && @request.client_id != ""%><p><b>Код клієнта: </b><%= @request.client_id%></p><%end%>
+<% if  @request.phone && @request.phone != ""%><p><b>Телефон: </b><%= @request.phone%></p><%end%>
+<% if  @request.email && @request.email !=""%><p><b>Email: </b><%= @request.email%></p><%end%>
 <hr>
-Коментарі:
+  Коментарі:
 
-<%= render @request.comments %>
+  <%= render @request.comments %>
 
-<%= render 'comments/form' %>
-</div>
+  <%= render 'comments/form' %>
+  </div>

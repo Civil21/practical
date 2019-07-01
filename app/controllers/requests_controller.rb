@@ -4,7 +4,6 @@ class RequestsController < ApplicationController
     session[:token] = nil
     if session[:admin]
       redirect_to admin_path
-
     else
       if session[:message] != ''
         @message = session[:message]
@@ -21,9 +20,7 @@ class RequestsController < ApplicationController
       session[:token] = @token
       redirect_to request_path(@request.id)
     else
-
       @message = ''
-
       @message += 'Ви не ввели жодного значення ' if params[:id] == '' || params[:id].nil?
       @message += 'Ви не ввели ключ ' if @token == '' || @token.nil?
       @message += 'НЕ ЗНАЙДЕНО ЗАЯВКИ З ТАКИМ НОМЕРОМ ' unless @request && params[:id] != ''
@@ -59,7 +56,7 @@ class RequestsController < ApplicationController
     params[:request][:stat] = 'wait'
     params[:request][:token] = (0...6).map { ('a'..'z').to_a[rand(26)] }.join
     params[:request][:name] = params[:request][:name].downcase
-    @request = Request.create(params.require(:request).permit(:name, :phone, :subject, :token, :text, :stat))
+    @request = Request.create(params.require(:request).permit(:name, :phone, :email, :client_id, :subject, :token, :text, :stat))
     if @request.save
       session[:token] = @request.token
       redirect_to request_path(@request.id)
